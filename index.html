@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Solokod — Yazılım Şirketi</title>
+<meta name="description" content="Solokod; Solohab, Senkron ve SoloEmlak gibi kendi yazılım ürünlerini tasarlayan, geliştiren ve büyüten bağımsız bir yazılım şirketidir." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          paper: '#FAFAF8',
+          ink: '#17191D',
+          muted: '#6B7076',
+          hairline: '#E5E4E0',
+          navy: '#28324A',
+        },
+        fontFamily: {
+          display: ['"Fraunces"', 'serif'],
+          body: ['"Inter"', 'sans-serif'],
+        },
+      },
+    },
+  }
+</script>
+
+<style>
+  html, body { background-color: #FAFAF8; }
+  ::selection { background: #28324A; color: #FAFAF8; }
+
+  .grain {
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    pointer-events: none;
+    opacity: 0.035;
+    mix-blend-mode: multiply;
+  }
+
+  .vignette {
+    background: radial-gradient(ellipse 60% 45% at 50% 20%, rgba(40,50,74,0.05), transparent 70%);
+  }
+
+  .hero-mark {
+    font-size: clamp(3.5rem, 5vw + 2rem, 7rem);
+    letter-spacing: -0.02em;
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(12px);
+    animation: fadeIn 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .fade-in.d1 { animation-delay: .12s; }
+  .fade-in.d2 { animation-delay: .3s; }
+  .fade-in.d3 { animation-delay: .46s; }
+
+  @keyframes fadeIn {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fade-in { animation: none; opacity: 1; transform: none; }
+  }
+
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid #28324A;
+    outline-offset: 3px;
+  }
+
+  .grow-underline {
+    position: relative;
+    text-decoration: none;
+  }
+  .grow-underline::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    right: 50%;
+    bottom: -3px;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.35;
+    transition: left 0.4s cubic-bezier(0.16, 1, 0.3, 1), right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .grow-underline:hover::after,
+  .grow-underline:focus-visible::after {
+    left: 0;
+    right: 0;
+  }
+
+  .product-row {
+    transition: padding-left 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .product-row:hover {
+    padding-left: 6px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .product-row:hover { padding-left: 0; }
+  }
+
+  .rule-fade {
+    height: 1px;
+    background: linear-gradient(to right, transparent, #E5E4E0 20%, #E5E4E0 80%, transparent);
+  }
+</style>
+</head>
+
+<body class="font-body text-ink bg-paper antialiased">
+
+  <svg class="grain" xmlns="http://www.w3.org/2000/svg">
+    <filter id="noise">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"></feTurbulence>
+      <feColorMatrix type="saturate" values="0"></feColorMatrix>
+    </filter>
+    <rect width="100%" height="100%" filter="url(#noise)"></rect>
+  </svg>
+
+  <!-- ================= HEADER ================= -->
+  <header id="top" class="pt-12 md:pt-14 text-center">
+    <a href="#top" class="font-display text-[15px] tracking-wide">
+      solo<span class="italic text-navy">kod</span>
+    </a>
+  </header>
+
+  <!-- ================= HERO ================= -->
+  <section class="relative vignette">
+    <div class="max-w-2xl mx-auto px-6 pt-28 pb-28 md:pt-40 md:pb-40 text-center">
+      <h1 class="fade-in hero-mark font-display leading-none">
+        solo<span class="italic text-navy">kod</span>
+      </h1>
+
+      <div class="fade-in d1 w-10 h-px bg-navy/30 mx-auto mt-9"></div>
+
+      <p class="fade-in d1 mt-9 text-xl md:text-2xl font-display text-ink/85 max-w-md mx-auto leading-snug">
+        Kendi ürünlerini geliştiren bir yazılım şirketi.
+      </p>
+      <p class="fade-in d2 mt-5 text-[15px] text-muted max-w-sm mx-auto leading-relaxed">
+        Solohab, Senkron ve SoloEmlak gibi yazılım ürünlerini tasarlıyor, geliştiriyor ve büyütüyoruz.
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= PRODUCTS ================= -->
+  <section id="projects" class="max-w-xl mx-auto px-6 pb-28 md:pb-40">
+    <div class="text-center text-xs tracking-[0.2em] uppercase text-muted mb-16">Ürünlerimiz</div>
+
+    <div class="rule-fade"></div>
+
+    <!-- Product 1 -->
+    <a href="https://solohab.com" target="_blank" rel="noopener"
+       class="product-row group flex items-baseline gap-5 md:gap-8 py-9 border-b border-hairline">
+      <span class="font-display italic text-sm text-muted/70 w-5 shrink-0 pt-1">01</span>
+      <div>
+        <h2 class="grow-underline font-display text-2xl md:text-[1.7rem] inline-block">Solohab</h2>
+        <span class="block mt-1.5 text-xs tracking-wide text-muted">SaaS Ürünü</span>
+        <p class="mt-3 text-sm text-ink/65 leading-relaxed max-w-sm">
+          Solokod bünyesinde geliştirdiğimiz ilk ürünümüz.
+        </p>
+      </div>
+    </a>
+
+    <!-- Product 2 -->
+    <div class="product-row flex items-baseline gap-5 md:gap-8 py-9 border-b border-hairline">
+      <span class="font-display italic text-sm text-muted/70 w-5 shrink-0 pt-1">02</span>
+      <div>
+        <h2 class="font-display text-2xl md:text-[1.7rem]">Senkron</h2>
+        <span class="block mt-1.5 text-xs tracking-wide text-muted">Kurulum Bazlı Yazılım</span>
+        <p class="mt-3 text-sm text-ink/65 leading-relaxed max-w-sm">
+          Farklı pazaryeri, XML ve tedarikçi kaynaklarını tek merkezden senkronize eden ürün ve stok entegrasyon platformu.
+        </p>
+      </div>
+    </div>
+
+    <!-- Product 3 -->
+    <a href="#" class="product-row group flex items-baseline gap-5 md:gap-8 py-9 border-b border-hairline">
+      <span class="font-display italic text-sm text-muted/70 w-5 shrink-0 pt-1">03</span>
+      <div>
+        <h2 class="grow-underline font-display text-2xl md:text-[1.7rem] inline-block">SoloEmlak</h2>
+        <span class="block mt-1.5 text-xs tracking-wide text-muted">SaaS Ürünü</span>
+        <p class="mt-3 text-sm text-ink/65 leading-relaxed max-w-sm">
+          Solokod'un emlak sektörüne yönelik geliştirdiği platform.
+        </p>
+      </div>
+    </a>
+  </section>
+
+  <!-- ================= CONTACT ================= -->
+  <section id="contact" class="relative vignette">
+    <div class="max-w-xl mx-auto px-6 pb-32 md:pb-44 text-center">
+      <div class="text-xs tracking-[0.2em] uppercase text-muted mb-7">İletişim</div>
+      <h2 class="font-display text-3xl md:text-4xl mb-8 tracking-tight">Bize ulaşın.</h2>
+      <a href="mailto:merhaba@solokod.com"
+         class="grow-underline inline-block font-display italic text-2xl md:text-3xl text-navy">
+        destek@solokod.com
+      </a>
+      <p class="mt-6 text-sm text-muted">Ankara, Türkiye</p>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="max-w-xl mx-auto px-6 py-9 border-t border-hairline flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted">
+    <span class="font-display italic">solokod</span>
+    <span>© <span id="year"></span> Tüm hakları saklıdır.</span>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
